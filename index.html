@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Portal de Robótica Educativa | Ing. Wilmer Montilla</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +36,34 @@
             scrollbar-color: var(--neon-cyan) var(--dark-bg);
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        /* SCROLL PERSONALIZADO - MÁS GRUESO Y CON ESTILO NEÓN */
+        ::-webkit-scrollbar {
+            width: 14px;
+            height: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 240, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            margin: 5px 0;
+        }
+
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 20px;
+            border: 2px solid var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-cyan);
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--neon-magenta), var(--neon-cyan));
+            box-shadow: 0 0 25px var(--neon-cyan), 0 0 8px var(--neon-magenta);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
         }
 
         body {
@@ -302,7 +325,6 @@
             text-decoration: none;
         }
 
-        /* Logo de VIOS ACADEMY - Tamaño corregido como en el ejemplo */
         .nav-logo-img {
             height: 50px;
             width: auto;
@@ -1186,7 +1208,12 @@
             <!-- 🎬 VIDEO 1 -->
             <div class="video-container">
                 <span class="video-label">🎬 Historia de la Robótica</span>
-                <iframe src="https://youtu.be/wUNEXQ0lJTU?si=Tq7F3eX9WXPoNJn5" allowfullscreen></iframe>
+                <iframe 
+                    src="https://youtu.be/wUNEXQ0lJTU?si=Tq7F3eX9WXPoNJn5" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
             </div>
         </section>
 
@@ -1224,7 +1251,12 @@
             <!-- 🎬 VIDEO 2 -->
             <div class="video-container">
                 <span class="video-label">🎬 ¿Qué es STEAM?</span>
-                <iframe src="https://youtu.be/_DAqhNKATM8?si=ikdQg7MyqvvDvI2O" allowfullscreen></iframe>
+                <iframe 
+                    src="https://youtu.be/_DAqhNKATM8?si=ikdQg7MyqvvDvI2O" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
             </div>
         </section>
 
@@ -1257,7 +1289,12 @@
             <!-- 🎬 VIDEO 3 -->
             <div class="video-container">
                 <span class="video-label">🎬 Componentes Básicos</span>
-                <iframe src="https://youtu.be/HdnKswGQhu4?si=8bPXC5ff3_gv96Xm" allowfullscreen></iframe>
+                <iframe 
+                    src="https://youtu.be/HdnKswGQhu4?si=8bPXC5ff3_gv96Xm" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
             </div>
         </section>
 
@@ -1333,7 +1370,12 @@
             <!-- 🎬 VIDEO 5 -->
             <div class="video-container">
                 <span class="video-label">🎬 Control de Lazo Cerrado</span>
-                <iframe src="https://youtu.be/2SHQTUvvVuM?si=aR2PZXGrlcEmze9z" allowfullscreen></iframe>
+                <iframe 
+                    src="https://youtu.be/2SHQTUvvVuM?si=aR2PZXGrlcEmze9z" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
             </div>
 
             <!-- 📱 REALIDAD AUMENTADA WEBXR con ROBOT INDUSTRIAL -->
