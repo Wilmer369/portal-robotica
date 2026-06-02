@@ -23,7 +23,6 @@
             --text-primary: #e8e8f0;
             --text-secondary: #9ca3b8;
             --gradient-main: linear-gradient(135deg, #00f0ff, #8b5cf6, #ff006e);
-            /* Colores para scroll robótico negro-naranja */
             --scroll-rail: #111111;
             --scroll-thumb-start: #1a1a1a;
             --scroll-thumb-end: #ff6600;
@@ -41,7 +40,6 @@
             scrollbar-color: #ff6600 #1a1a1a;
         }
 
-        /* SCROLL PERSONALIZADO - ESTILO ROBOT INDUSTRIAL (Negro a Naranja) */
         ::-webkit-scrollbar {
             width: 16px;
             height: 16px;
@@ -351,19 +349,21 @@
             text-shadow: 0 0 20px rgba(0,240,255,0.5);
         }
 
-        /* Toggle 3D Switch */
+        /* Toggle 3D Switch - mejorado para móvil */
         .toggle-3d {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
             background: rgba(0,240,255,0.1);
-            padding: 5px 15px;
+            padding: 5px 12px;
             border-radius: 40px;
             border: 1px solid var(--glass-border);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         .toggle-3d:hover {
             background: rgba(0,240,255,0.25);
@@ -397,8 +397,9 @@
             color: var(--neon-green);
         }
         .toggle-label {
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 0.7rem;
         }
 
         @media (max-width: 768px) {
@@ -409,14 +410,21 @@
             }
             .nav-links {
                 justify-content: center;
-                gap: 15px;
+                gap: 12px;
+                width: 100%;
+                flex-wrap: wrap;
             }
             .nav-links a {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
-            .toggle-3d { padding: 3px 12px; font-size: 0.65rem; }
+            .toggle-3d { 
+                padding: 4px 12px; 
+                font-size: 0.65rem;
+                margin-top: 5px;
+            }
             .toggle-switch { width: 35px; height: 18px; }
             .toggle-switch::after { width: 14px; height: 14px; }
+            .toggle-3d.active .toggle-switch::after { left: 18px; }
         }
 
         .robot-interactive {
@@ -500,13 +508,6 @@
             opacity: 0.6;
         }
 
-        section:hover {
-            transform: translateY(-8px) scale(1.005);
-            box-shadow: 0 20px 60px rgba(0,240,255,0.1), 0 0 40px rgba(139,92,246,0.08);
-            border-color: rgba(0,240,255,0.3);
-        }
-
-        /* Clase para desactivar el efecto 3D (tilt) global */
         body.no-tilt .tilt-card {
             transform: none !important;
             transition: transform 0.2s ease !important;
@@ -658,6 +659,9 @@
         .stats-bar { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 40px 0; }
         .stat-item { text-align: center; padding: 20px 30px; background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.1); border-radius: 16px; min-width: 150px; transition: all 0.3s ease; }
         .stat-number { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .info-tabla { width: 100%; border-collapse: collapse; margin: 25px 0; background: rgba(0,240,255,0.03); border-radius: 12px; overflow: hidden; }
+        .info-tabla th, .info-tabla td { border: 1px solid rgba(0,240,255,0.2); padding: 14px; text-align: left; vertical-align: top; }
+        .info-tabla th { background: rgba(0,240,255,0.1); color: var(--neon-cyan); font-family: 'Orbitron', sans-serif; font-weight: 600; width: 30%; }
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; cursor: pointer; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; border: 2px solid var(--neon-cyan); }
@@ -696,7 +700,7 @@
                 <a href="#modulo6">Autor</a>
                 <a href="#robot-interactivo" style="color: var(--neon-green);">🤖 Robot</a>
                 <div id="toggle3dBtn" class="toggle-3d" style="cursor: pointer;">
-                    <span class="toggle-label">🎛️ 3D Tilt</span>
+                    <span class="toggle-label">ON / OFF 3D</span>
                     <div class="toggle-switch"></div>
                 </div>
             </div>
@@ -803,7 +807,6 @@
             </div>
             <div id="ar-demo" style="margin-top: 50px;">
                 <h3 style="color: var(--neon-green); text-align: center;">🤖 Realidad Aumentada — Robot Interactivo</h3>
-                <!-- Modelo original que funcionaba correctamente -->
                 <model-viewer 
                     src="https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpressive.glb"
                     alt="Robot 3D para Realidad Aumentada"
@@ -836,11 +839,31 @@
             </div>
         </section>
 
-        <!-- AUTOR -->
+        <!-- AUTOR con información completa restaurada -->
         <section id="modulo6" class="tilt-card">
             <div class="autor-container">
                 <div class="autor-imagen"><div class="autor-imagen-wrapper"><img src="images/wilmer-montilla.jpg" alt="Ing. Wilmer Montilla" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop'"></div><p>Ing. Wilmer Montilla</p></div>
-                <div class="autor-info"><h2>Acerca del Autor y Mentor</h2><p>Ingeniero Electrónico, docente especialista en robótica educativa.</p><div class="stats-bar"><div class="stat-item"><div class="stat-number">15+</div><div class="stat-label">Años Exp.</div></div><div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Estudiantes</div></div><div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Pasión</div></div></div><div class="highlight-box"><h4>🚀 Pilares Educativos</h4><ul><li>Estrategia práctica integrada</li><li>Liderazgo técnico</li><li>Actualización continua en IA</li></ul></div></div>
+                <div class="autor-info">
+                    <h2>Acerca del Autor y Mentor</h2>
+                    <p><strong>Ingeniero Electrónico y Especialista en Docencia Técnica</strong></p>
+                    <p>El Ing. Wilmer Montilla es un destacado profesional venezolano de amplia trayectoria en electrónica, gestión de infraestructura de TI y formación tecnológica de vanguardia. Egresado como Ingeniero Electrónico del I.U. Politécnico Santiago Mariño y Licenciado en Educación mención Educación Técnica por la Universidad Nacional Experimental Simón Rodríguez, complementa su perfil con un MBA en Mercadeo por la Caribbean International University y estudios de Magister Scientiarum en Gerencia de las TIC en la UNEFA.</p>
+                    <p>Su enfoque une la experiencia corporativa de alto nivel en diseño de centros de datos, con una profunda vocación docente orientada a la democratización del conocimiento técnico, la robótica escolar y la innovación pedagógica STEAM.</p>
+                    <div class="stats-bar">
+                        <div class="stat-item"><div class="stat-number">15+</div><div class="stat-label">Años Exp.</div></div>
+                        <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Estudiantes</div></div>
+                        <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Publicaciones</div></div>
+                    </div>
+                    <table class="info-tabla">
+                        <tr><th>Ámbito Técnico</th><th>Desempeño y Rol Educativo</th></tr>
+                        <tr><td>Tutoría de Pasantías</td><td>Tutor académico de pasantías institucionales, guiando la inserción en el sector productivo de Técnicos Medios en Electrónica en Caracas, Venezuela.</td></tr>
+                        <tr><td>Divulgación en IA</td><td>Conferencista y facilitador técnico en Inteligencia Artificial, orientando a jóvenes, docentes y profesionales sobre herramientas actuales y uso ético.</td></tr>
+                        <tr><td>Trayectoria en Aulas</td><td>Formador de generaciones en Electrónica General e Instrumentación en el Complejo Educativo Leonardo Infante y la Escuela Técnica Popular Don Bosco.</td></tr>
+                    </table>
+                    <div class="highlight-box">
+                        <h4>🚀 Pilares del Enfoque Educativo</h4>
+                        <ul><li><strong>Estrategia Práctica Integrada:</strong> Dinámicas curriculares basadas en solución de problemas reales del sector industrial.</li><li><strong>Fomento del Liderazgo Técnico:</strong> Preparación integral del estudiante para exigencias operativas y éticas del mercado laboral.</li><li><strong>Actualización Continua:</strong> Incorporación constante de tópicos avanzados de TI, redes, cableado estructurado e inteligencia artificial.</li></ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -870,7 +893,7 @@
             // Lightbox
             window.openLightbox = function(card){ let img=card.querySelector('img'); if(img){ document.getElementById('lightbox-img').src=img.src; document.getElementById('lightbox').classList.add('active'); } };
 
-            // Tilt 3D Switch
+            // Tilt 3D con efecto gyroscope para móviles + mouse para PC
             const toggleBtn = document.getElementById('toggle3dBtn');
             let tiltEnabled = true;
             function updateTiltGlobal(){
@@ -882,20 +905,58 @@
                 toggleBtn.addEventListener('click',()=>{ tiltEnabled = !tiltEnabled; updateTiltGlobal(); });
                 updateTiltGlobal();
                 const tiltCards = document.querySelectorAll('.tilt-card');
-                function attachTilt(card){
-                    card.addEventListener('mousemove',(e)=>{
-                        if(!tiltEnabled) return;
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left, y = e.clientY - rect.top;
-                        const centerX = rect.width/2, centerY = rect.height/2;
-                        const rotateX = (y - centerY)/20, rotateY = (centerX - x)/20;
-                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.005)`;
-                    });
-                    card.addEventListener('mouseleave',()=>{ if(!tiltEnabled) return; card.style.transform = ''; });
+                
+                // Función para aplicar transformación 3D
+                function applyTilt(card, rotateX, rotateY) {
+                    if(!tiltEnabled) return;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.005)`;
                 }
-                tiltCards.forEach(attachTilt);
-                const observerBody = new MutationObserver(()=>{ if(!tiltEnabled) tiltCards.forEach(c=>c.style.transform=''); });
-                observerBody.observe(document.body, {attributes:true, attributeFilter:['class']});
+                function resetTilt(card) {
+                    if(!tiltEnabled) return;
+                    card.style.transform = '';
+                }
+                
+                // Detectar si es dispositivo móvil (táctil) para usar gyroscope o mouse
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                
+                if(isMobile && window.DeviceOrientationEvent) {
+                    // En móviles: usar giroscopio para efecto parallax
+                    let currentBeta = 0, currentGamma = 0;
+                    window.addEventListener('deviceorientation', function(event) {
+                        if(!tiltEnabled) return;
+                        // beta: inclinación frontal (rango -90 a 90), gamma: inclinación lateral (-90 a 90)
+                        let beta = event.beta;  // X axis tilt
+                        let gamma = event.gamma; // Y axis tilt
+                        if(beta === null || gamma === null) return;
+                        // Normalizar valores para rotación suave (máx 15 grados)
+                        let rotateX = Math.min(15, Math.max(-15, beta * 0.3));
+                        let rotateY = Math.min(15, Math.max(-15, gamma * 0.3));
+                        tiltCards.forEach(card => {
+                            if(!tiltEnabled) return;
+                            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.003)`;
+                        });
+                    });
+                    // Opcional: reset al salir de la vista? se mantiene suave
+                } else {
+                    // En PC: usar seguimiento del mouse
+                    tiltCards.forEach(card => {
+                        card.addEventListener('mousemove', (e) => {
+                            if(!tiltEnabled) return;
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left, y = e.clientY - rect.top;
+                            const centerX = rect.width/2, centerY = rect.height/2;
+                            const rotateX = (y - centerY)/20;
+                            const rotateY = (centerX - x)/20;
+                            applyTilt(card, rotateX, rotateY);
+                        });
+                        card.addEventListener('mouseleave', () => resetTilt(card));
+                    });
+                }
+                // Asegurar que el toggle desactive completamente el efecto en móvil también
+                const observerBody = new MutationObserver(() => { 
+                    if(!tiltEnabled) tiltCards.forEach(c => c.style.transform='');
+                });
+                observerBody.observe(document.body, {attributes: true, attributeFilter:['class']});
             }
 
             // Robot interactivo
